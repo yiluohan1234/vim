@@ -8,22 +8,24 @@ func SetTitle()
     "如果文件类型为.sh文件 
     if &filetype == 'sh' 
 		call setline(1,"\#!/bin/bash") 
-		call append(line("."), "/*************************************************************************") 
-		call append(line(".")+1, "	> File Name: ".expand("%")) 
-		call append(line(".")+2, "	> Author: cyf") 
-		call append(line(".")+3, "	> Mail: XXX@qq.com") 
-		call append(line(".")+4, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+5, " ************************************************************************/") 
-		call append(line(".")+6, "")
-    elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python")
-        call append(line("."),"# coding=utf-8")
-		call append(line(".")+1, "/*************************************************************************") 
+		call append(line("."), "#######################################################################") 
+		call append(line(".")+1, "	'''	")
 		call append(line(".")+2, "	> File Name: ".expand("%")) 
 		call append(line(".")+3, "	> Author: cyf") 
 		call append(line(".")+4, "	> Mail: XXX@qq.com") 
 		call append(line(".")+5, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+6, " ************************************************************************/") 
+		call append(line(".")+6, "	'''	")		
+		call append(line(".")+7, "#######################################################################") 
+		call append(line(".")+8, "")
+    elseif &filetype == 'python'
+        call setline(1,"#!/usr/bin/env python")
+        call append(line("."),"# coding=utf-8")
+		call append(line(".")+1, "#######################################################################") 
+		call append(line(".")+2, "	> File Name: ".expand("%")) 
+		call append(line(".")+3, "	> Author: cyf") 
+		call append(line(".")+4, "	> Mail: XXX@qq.com") 
+		call append(line(".")+5, "	> Created Time: ".strftime("%c")) 
+		call append(line(".")+6, " #######################################################################") 
 		call append(line(".")+7, "")
 	
 
@@ -339,5 +341,6 @@ Bundle 'gmarik/vundle'
 Bundle 'Auto-Pairs'
 Bundle 'scrooloose/syntastic'
 Bundle 'https://github.com/wincent/command-t.git'
+Bundle 'https://github.com/ervandew/supertab.git'
 
-
+let g:SuperTabDefaultCompletionType="context"
