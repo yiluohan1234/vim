@@ -339,8 +339,8 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 Bundle 'Auto-Pairs'
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
-
+Bundle 'Valloric/YouCompleteMe'
 let g:SuperTabDefaultCompletionType="context"
