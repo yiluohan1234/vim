@@ -102,7 +102,7 @@ autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 "代码补全 
 set completeopt=preview,menu 
 "共享剪贴板  
-set clipboard+=unnamed 
+set clipboard+=unnamedplus 
 "从不备份  
 set nobackup
 "make 运行
@@ -217,11 +217,11 @@ map <C-c> y
 "列出当前目录文件  
 map <F2> :tabnew .<CR>  
 "打开树状文件目录  
-map <C-F2> \be  
+map <C-F2> \be 
+"去空行  
+nnoremap <F4> :g/^\s*$/d<CR>  
 "C，C++ 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
-"map <F5> :IndentGuidesToggle<CR>
-"map <F5>  :IndentLinesToggle<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -330,6 +330,32 @@ let OmniCpp_DefaultNameSpaces=["std"]
 set autochdir
 set tags+=/usr/include/qt4/tags
 
+"""""""""""""""""""""""cscope设置""""""""""""""""""      
+set cscopequickfix=s-,c-,d-,i-,t-,e-    
+if has("cscope")    
+	set csprg=/usr/bin/cscope    
+	set csto=1    
+	set cst    
+	set nocsverb    
+	" add any database in current directory     
+	if filereadable("cscope.out")    
+   		cs add cscope.out    
+	endif    
+	set csverb    
+endif    
+  
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>  
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>  
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>  
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>  
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>  
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>  
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>  
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>  
+
+"""""""""""""""""""YouCompleteMe设置"""""""""""""""""" 
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/data/ycm/.ycm_extra_conf.py'
 
 
 
@@ -342,5 +368,6 @@ Bundle 'Auto-Pairs'
 Bundle 'scrooloose/syntastic'
 Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
+Bundle 'Valloric/YouCompleteMe'
 
 let g:SuperTabDefaultCompletionType="context"
