@@ -369,8 +369,5 @@ Bundle 'Auto-Pairs'
 Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
 Bundle 'Valloric/YouCompleteMe'
-<<<<<<< HEAD
 
-=======
->>>>>>> fd321368f4619440ca0242f370c6cc6fce504724
 let g:SuperTabDefaultCompletionType="context"
