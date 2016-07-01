@@ -2,8 +2,7 @@
 
 wget -qO- https://raw.github.com/yiluohan1234/vim/master/setup.sh | sh -x
 
-
-https://github.com/Valloric/YouCompleteMe
 cd ~/.vim/bundle/YouCompleteMe
+
 ./install.py --clang-completer
 
