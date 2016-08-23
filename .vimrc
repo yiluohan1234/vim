@@ -103,6 +103,12 @@ autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 set completeopt=preview,menu 
 "共享剪贴板  
 set clipboard+=unnamedplus 
+"在处理未保存或只读文件的时候，弹出确认
+set confirm
+"不让vim发出讨厌的滴滴声
+set noerrorbells
+"在搜索的时候忽略大小写
+"set ignorecase
 "从不备份  
 set nobackup
 "make 运行
@@ -184,6 +190,7 @@ set backspace=2
 set whichwrap+=<,>,h,l
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set mouse=a
+set mouse=v
 set selection=exclusive
 set selectmode=mouse,key
 " 通过使用: commands命令，告诉我们文件的哪一行被改变过
@@ -369,5 +376,53 @@ Bundle 'Auto-Pairs'
 Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
 Bundle 'Valloric/YouCompleteMe'
+
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'Yggdroot/indentLine'
+let g:indentLine_char = '┊'
+Bundle 'tpope/vim-rails.git'
+" " vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non github repos
+Bundle 'python-imports.vim'
+Bundle 'CaptureClipboard'
+Bundle 'ctrlp-modified.vim'
+Bundle 'last_edit_marker.vim'
+Bundle 'synmark.vim'
+Bundle 'Python-mode-klen'
+Bundle 'SQLComplete.vim'
+Bundle 'Javascript-OmniCompletion-with-YUI-and-j'
+Bundle 'JavaScript-Indent'
+Bundle 'Better-Javascript-Indentation'
+Bundle 'jslint.vim'
+Bundle "pangloss/vim-javascript"
+Bundle 'Vim-Script-Updater'
+Bundle 'ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'jsbeautify'
+Bundle 'The-NERD-Commenter'
+"django
+Bundle 'django_templates.vim'
+Bundle 'Django-Projects'
+Bundle 'FredKSchott/CoVim'
+Bundle 'djangojump'
+"
+""ctrlp设置
+"
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif     "MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif  "Windows
+"Bundle 'FredKSchott/CoVim'
+"Bundle 'djangojump'
+
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
+let g:ctrlp_extensions = ['funky']
 
 let g:SuperTabDefaultCompletionType="context"
