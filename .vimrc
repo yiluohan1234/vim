@@ -264,26 +264,6 @@ func! SaveInputData()
 endfunc
 
 
-
-"自动补全
-":inoremap ( ()<ESC>i
-":inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {<CR>}<ESC>O
-":inoremap } <c-r>=ClosePair('}')<CR>
-":inoremap [ []<ESC>i
-":inoremap ] <c-r>=ClosePair(']')<CR>
-":inoremap " ""<ESC>i
-":inoremap ' ''<ESC>i
-":inoremap < <><ESC>i
-":inoremap > <c-r>=ClosePair('>')<CR>
-"function! ClosePair(char)
-"	if getline('.')[col('.') - 1] == a:char
-"		return "\<Right>"
-"	else
-"		return a:char
-"	endif
-"endfunction
-
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
@@ -313,9 +293,6 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 
-let g:indentLine_first_char = '┊'
-let g:indentLine_color_term = 80
-let g:indentLine_char = '┊'
 if &term == "xterm"
 	set t_Co=8
 	set t_Sb=^[[4%dm
