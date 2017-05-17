@@ -283,6 +283,7 @@ endfunc
 "		return a:char
 "	endif
 "endfunction
+
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
@@ -372,7 +373,8 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 Bundle 'Auto-Pairs'
-" Bundle 'scrooloose/syntastic'
+"YouCompleteMe已经集成了syntastic
+"Bundle 'scrooloose/syntastic'
 Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
 Bundle 'Valloric/YouCompleteMe'
@@ -380,69 +382,7 @@ Bundle 'Valloric/YouCompleteMe'
 "迅速定位文件
 "map <F3> :CtrlP<CR>
 Bundle 'kien/ctrlp.vim'
-
-"autopep8是一款自动格式化工具，安装后在Normal模式输入:Autopep8或按F8就可以自动依照pep8的标准自动格式化代码
-"Bundle'tell-k/vim-autopep8'
-"缩进指示线"
-"let g:indentLine_char='┆'
-"let g:indentLine_enabled = 1
-"autopep8设置"
-"let g:autopep8_disable_show_diff=1
-
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-
-
-"indentLine是一款缩进指示线，由纯字符实现，效果比较完美
-"Bundle 'Yggdroot/indentLine'
-let g:indentLine_char = '┊'
-"Bundle 'tpope/vim-rails.git'
-
-"用于美化状态栏
-"Bundle 'Lokaltog/vim-powerline'
-
-" " vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-" non github repos
-Bundle 'python-imports.vim'
-"Bundle 'CaptureClipboard'
-"Bundle 'ctrlp-modified.vim'
-"Bundle 'last_edit_marker.vim'
-"Bundle 'synmark.vim'
-"Bundle 'Python-mode-klen'
-"Bundle 'SQLComplete.vim'
-"Bundle 'Javascript-OmniCompletion-with-YUI-and-j'
-"Bundle 'JavaScript-Indent'
-"Bundle 'Better-Javascript-Indentation'
-"Bundle 'jslint.vim'
-"Bundle "pangloss/vim-javascript"
-"Bundle 'Vim-Script-Updater'
-
-
-"Bundle 'ctrlpvim/ctrlp.vim'
-"Bundle 'tacahiroy/ctrlp-funky'
-"Bundle 'jsbeautify'
-"nerdcommenter主要功能是方便的写注释
-"map <F4> <leader>ci <CR>
-"Bundle 'The-NERD-Commenter'
-"django
-"Bundle 'django_templates.vim'
-"Bundle 'Django-Projects'
-"Bundle 'FredKSchott/CoVim'
-"Bundle 'djangojump'
-"
-
-"Bundle 'FredKSchott/CoVim'
-"Bundle 'djangojump'
-
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
-
-""ctrlp设置
-"
+"ctrlp设置
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif     "MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif  "Windows
 let g:ctrlp_map = '<c-p>'
@@ -454,4 +394,102 @@ let g:ctrlp_extensions = ['funky']
 let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 
+"用于美化状态栏
+Bundle 'Lokaltog/vim-powerline'
+
+"nerdcommenter主要功能是方便的写注释
+map <F1> <leader>ci <CR>
+Bundle 'The-NERD-Commenter'
+
+"indentLine是一款缩进指示线，由纯字符实现，效果比较完美
+Bundle 'Yggdroot/indentLine'
+let g:indentLine_char = '¦'
+
+"python-mode是封装了pylint、rope、pydoc、pep8和mccabe的vim插件
+Bundle 'python-mode-klen'
+"python-mode
+"开启警告
+let g:pymode_warnings = 0
+"保存文件时自动删除无用空格
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 1
+"显示允许的最大长度的列
+let g:pymode_options_colorcolumn = 1
+"设置QuickFix窗口的最大，最小高度
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 10
+"使用python3
+let g:pymode_python = 'python2'
+"使用PEP8风格的缩进
+let g:pymode_indent = 1
+"取消代码折叠
+let g:pymode_folding = 0
+"开启python-mode定义的移动方式
+let g:pymode_motion = 1
+"启用python-mode内置的python文档，使用K进行查找
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
+"自动检测并启用virtualenv
+let g:pymode_virtualenv = 1
+"不使用python-mode运行python代码
+let g:pymode_run = 0
+"let g:pymode_run_bind = '<Leader>r'
+"不使用python-mode设置断点
+let g:pymode_breakpoint = 0
+"let g:pymode_breakpoint_bind = '<leader>b'
+"启用python语法检查
+let g:pymode_lint = 1
+"修改后保存时进行检查
+let g:pymode_lint_on_write = 0
+"编辑时进行检查
+let g:pymode_lint_on_fly = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+"发现错误时不自动打开QuickFix窗口
+let g:pymode_lint_cwindow = 0
+"侧边栏不显示python-mode相关的标志
+let g:pymode_lint_signs = 0
+"let g:pymode_lint_todo_symbol = 'WW'
+"let g:pymode_lint_comment_symbol = 'CC'
+"let g:pymode_lint_visual_symbol = 'RR'
+"let g:pymode_lint_error_symbol = 'EE'
+"let g:pymode_lint_info_symbol = 'II'
+"let g:pymode_lint_pyflakes_symbol = 'FF'
+"启用重构
+let g:pymode_rope = 1
+"不在父目录下查找.ropeproject，能提升响应速度
+let g:pymode_rope_lookup_project = 0
+"光标下单词查阅文档
+let g:pymode_rope_show_doc_bind = '<C-c>d'
+"项目修改后重新生成缓存
+let g:pymode_rope_regenerate_on_write = 1
+"开启补全，并设置<Ctrl+Space>为默认快捷键
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_completion_bind = '<C-Space>'
+"<C-c>g跳转到定义处，同时新建竖直窗口打开
+let g:pymode_rope_goto_definition_bind = '<C-c>g'
+let g:pymode_rope_goto_definition_cmd = 'vnew'
+"重命名光标下的函数，方法，变量及类名
+let g:pymode_rope_rename_bind = '<C-c>rr'
+"重命名光标下的模块或包
+let g:pymode_rope_rename_module_bind = '<C-c>r1r'
+"开启python所有的语法高亮
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+"高亮缩进错误
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+"高亮空格错误
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"[[	Jump to previous class or function (normal, visual, operator modes)
+"]]	Jump to next class or function (normal, visual, operator modes)
+"[M	Jump to previous class or method (normal, visual, operator modes)
+"]M	Jump to next class or method (normal, visual, operator modes)
+"aC	Select a class. Ex: vaC, daC, yaC, caC (normal, operator modes)
+"iC	Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
+"aM	Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
+"iM	Select inner function or method. Ex: viM, diM, yiM, ciM 
+
+
+
 let g:SuperTabDefaultCompletionType="context"
+
