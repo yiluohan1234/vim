@@ -377,12 +377,27 @@ Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
 Bundle 'Valloric/YouCompleteMe'
 
+"autopep8是一款自动格式化工具，安装后在Normal模式输入:Autopep8或按F8就可以自动依照pep8的标准自动格式化代码
+"Bundle'tell-k/vim-autopep8'
+"缩进指示线"
+"let g:indentLine_char='┆'
+"let g:indentLine_enabled = 1
+"autopep8设置"
+"let g:autopep8_disable_show_diff=1
 
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+
+
+"indentLine是一款缩进指示线，由纯字符实现，效果比较完美
 "Bundle 'Yggdroot/indentLine'
 let g:indentLine_char = '┊'
 "Bundle 'tpope/vim-rails.git'
+
+"用于美化状态栏
+"Bundle 'Lokaltog/vim-powerline'
+
 " " vim-scripts repos
 "Bundle 'L9'
 "Bundle 'FuzzyFinder'
@@ -403,6 +418,8 @@ Bundle 'python-imports.vim'
 "Bundle 'ctrlp.vim'
 "Bundle 'tacahiroy/ctrlp-funky'
 "Bundle 'jsbeautify'
+"nerdcommenter主要功能是方便的写注释
+"map <F4> <leader>ci <CR>
 "Bundle 'The-NERD-Commenter'
 "django
 "Bundle 'django_templates.vim'
