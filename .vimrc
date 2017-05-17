@@ -377,6 +377,10 @@ Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
 Bundle 'Valloric/YouCompleteMe'
 
+"迅速定位文件
+"map <F3> :CtrlP<CR>
+Bundle 'kien/ctrlp.vim'
+
 "autopep8是一款自动格式化工具，安装后在Normal模式输入:Autopep8或按F8就可以自动依照pep8的标准自动格式化代码
 "Bundle'tell-k/vim-autopep8'
 "缩进指示线"
@@ -416,9 +420,7 @@ Bundle 'python-imports.vim'
 "Bundle "pangloss/vim-javascript"
 "Bundle 'Vim-Script-Updater'
 
-"迅速定位文件
-"map <F3> :CtrlP<CR>
-"Bundle 'ctrlp.vim'
+
 "Bundle 'ctrlpvim/ctrlp.vim'
 "Bundle 'tacahiroy/ctrlp-funky'
 "Bundle 'jsbeautify'
@@ -431,10 +433,7 @@ Bundle 'python-imports.vim'
 "Bundle 'FredKSchott/CoVim'
 "Bundle 'djangojump'
 "
-""ctrlp设置
-"
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif     "MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif  "Windows
+
 "Bundle 'FredKSchott/CoVim'
 "Bundle 'djangojump'
 
@@ -442,8 +441,17 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
+""ctrlp设置
+"
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif     "MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif  "Windows
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 
 let g:SuperTabDefaultCompletionType="context"
