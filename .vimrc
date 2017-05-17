@@ -415,7 +415,11 @@ Bundle 'python-imports.vim'
 "Bundle 'jslint.vim'
 "Bundle "pangloss/vim-javascript"
 "Bundle 'Vim-Script-Updater'
+
+"迅速定位文件
+"map <F3> :CtrlP<CR>
 "Bundle 'ctrlp.vim'
+"Bundle 'ctrlpvim/ctrlp.vim'
 "Bundle 'tacahiroy/ctrlp-funky'
 "Bundle 'jsbeautify'
 "nerdcommenter主要功能是方便的写注释
