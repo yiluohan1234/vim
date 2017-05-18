@@ -389,6 +389,7 @@ Bundle 'Yggdroot/indentLine'
 let g:indentLine_char = '¦'
 
 Bundle "drmingdrmer/xptemplate.git"
+let g:xptemplate_key = '<C-\>'
 
 "python-mode是封装了pylint、rope、pydoc、pep8和mccabe的vim插件
 "Bundle 'python-mode-klen'
