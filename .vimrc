@@ -465,7 +465,7 @@ let g:xptemplate_key = '<C-\>'
 "高亮缩进错误
 "let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 "高亮空格错误
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"let g:pymode_syntax_space_errors = g:pymode_syntax_all
 "[[	Jump to previous class or function (normal, visual, operator modes)
 "]]	Jump to next class or function (normal, visual, operator modes)
 "[M	Jump to previous class or method (normal, visual, operator modes)
