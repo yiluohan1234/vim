@@ -360,7 +360,7 @@ Bundle 'Auto-Pairs'
 "Bundle 'scrooloose/syntastic'
 Bundle 'https://github.com/wincent/command-t.git'
 Bundle 'https://github.com/ervandew/supertab.git'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 
 "迅速定位文件
 "map <F3> :CtrlP<CR>
