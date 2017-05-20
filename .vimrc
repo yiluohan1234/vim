@@ -475,6 +475,8 @@ let g:xptemplate_key = '<C-\>'
 "aM	Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
 "iM	Select inner function or method. Ex: viM, diM, yiM, ciM 
 
+"自动补全插件
+Bundle 'davidhalter/jedi-vim'
 
 
 let g:SuperTabDefaultCompletionType="context"
