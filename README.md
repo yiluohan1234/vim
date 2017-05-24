@@ -8,7 +8,13 @@ cd ~/.vim/bundle/YouCompleteMe
 
 ./install.py --clang-completer
 
+ubuntu16.04
+
+python3 ./install.py --clang-completer
+
+
 1.键盘命令
+
 ctrl + a <==> 全选
 
 鼠标选中状态下，为ctrl + c 复制
