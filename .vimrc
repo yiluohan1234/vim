@@ -25,7 +25,7 @@ func SetTitle()
 		call append(line(".")+3, "#	> Author: cyf") 
 		call append(line(".")+4, "#	> Mail: XXX@qq.com") 
 		call append(line(".")+5, "#	> Created Time: ".strftime("%c")) 
-		call append(line(".")+6, " #######################################################################") 
+		call append(line(".")+6, "#######################################################################") 
 		call append(line(".")+7, "")
 	
 
@@ -37,7 +37,7 @@ func SetTitle()
 		call append(line(".")+4, "	> Author: cyf") 
 		call append(line(".")+5, "	> Mail: XXX@qq.com") 
 		call append(line(".")+6, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+7, " ************************************************************************/") 
+		call append(line(".")+7, "************************************************************************/") 
 		call append(line(".")+8, "")
     else 
 		call setline(1, "/*************************************************************************") 
@@ -45,7 +45,7 @@ func SetTitle()
 		call append(line(".")+1, "	> Author: cyf") 
 		call append(line(".")+2, "	> Mail: XXX@qq.com") 
 		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
+		call append(line(".")+4, "************************************************************************/") 
 		call append(line(".")+5, "")
 	endif
     if expand("%:e") == 'cpp'
