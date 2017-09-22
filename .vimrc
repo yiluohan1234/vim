@@ -241,10 +241,10 @@ func! CompileRunGcc()
 		exec "!javac %" 
 		exec "!java %<"
 	elseif &filetype == 'sh'
-		:!./%
+		exec "!chmod a+x %"  
+		exec "!./%"
 	elseif &filetype == 'python'
 		exec "!python %"
-		exec "!python %<"
 	endif
 endfunc
 map <F6> :TlistToggle<CR>
