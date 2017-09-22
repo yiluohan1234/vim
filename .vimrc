@@ -242,7 +242,7 @@ func! CompileRunGcc()
 		exec "!java %<"
 	elseif &filetype == 'sh'
 		:!./%
-	elseif &filetype == 'py'
+	elseif &filetype == 'python'
 		exec "!python %"
 		exec "!python %<"
 	endif
