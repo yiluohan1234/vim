@@ -18,6 +18,8 @@ ubuntu16.04
 python3 ./install.py --clang-completer
 
 二.快捷键设置
+
+
 1.键盘命令
 
 ctrl + a <==> 全选
