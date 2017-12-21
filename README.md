@@ -1,3 +1,8 @@
+Linux下vim编辑器的配置
+
+一.安装
+
+
 打开终端，执行下面的命令就自动安装好了：
 
 wget -qO- https://raw.github.com/yiluohan1234/vim/master/setup.sh | sh -x
@@ -12,7 +17,7 @@ ubuntu16.04
 
 python3 ./install.py --clang-completer
 
-
+二.快捷键设置
 1.键盘命令
 
 ctrl + a <==> 全选
