@@ -11,42 +11,46 @@ func SetTitle()
 		call append(line("."), "#######################################################################") 
 		call append(line(".")+1, "	#'''	")
 		call append(line(".")+2, "	#> File Name: ".expand("%")) 
-		call append(line(".")+3, "	#> Author: cyf") 
+		call append(line(".")+3, "	#> Author: cuiyf") 
 		call append(line(".")+4, "	#> Mail: XXX@qq.com") 
-		call append(line(".")+5, "	#> Created Time: ".strftime("%c")) 
-		call append(line(".")+6, "	#'''	")		
-		call append(line(".")+7, "#######################################################################") 
-		call append(line(".")+8, "")
+		call append(line(".")+5, "	#> Github: https://github.com/yiluohan1234") 
+		call append(line(".")+6, "	#> Created Time: ".strftime("%c")) 
+		call append(line(".")+7, "	#'''	")		
+		call append(line(".")+8, "#######################################################################") 
+		call append(line(".")+9, "")
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
 		call append(line(".")+1, "#######################################################################") 
 		call append(line(".")+2, "#	> File Name: ".expand("%")) 
-		call append(line(".")+3, "#	> Author: cyf") 
+		call append(line(".")+3, "#	> Author: cuiyf") 
 		call append(line(".")+4, "#	> Mail: XXX@qq.com") 
-		call append(line(".")+5, "#	> Created Time: ".strftime("%c")) 
-		call append(line(".")+6, "#######################################################################") 
-		call append(line(".")+7, "")
+		call append(line(".")+5, "#	> Github: https://github.com/yiluohan1234") 
+		call append(line(".")+6, "#	> Created Time: ".strftime("%c")) 
+		call append(line(".")+7, "#######################################################################") 
+		call append(line(".")+8, "")
 	
 
     elseif &filetype == 'ruby'
         call setline(1,"#!/usr/bin/env ruby")
-        call append(line(".")+1,"# encoding: utf-8")
-		call append(line(".")+2, "/*************************************************************************") 
-		call append(line(".")+3, "	> File Name: ".expand("%")) 
-		call append(line(".")+4, "	> Author: cyf") 
-		call append(line(".")+5, "	> Mail: XXX@qq.com") 
-		call append(line(".")+6, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+7, "************************************************************************/") 
-		call append(line(".")+8, "")
+        call append(line(".")+2,"# encoding: utf-8")
+		call append(line(".")+3, "/*************************************************************************") 
+		call append(line(".")+4, "	> File Name: ".expand("%")) 
+		call append(line(".")+5, "	> Author: cuiyf") 
+		call append(line(".")+6, "	> Mail: XXX@qq.com") 
+		call append(line(".")+7, "	> Github: https://github.com/yiluohan1234") 
+		call append(line(".")+8, "	> Created Time: ".strftime("%c")) 
+		call append(line(".")+9, "************************************************************************/") 
+		call append(line(".")+10, "")
     else 
 		call setline(1, "/*************************************************************************") 
 		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: cyf") 
+		call append(line(".")+1, "	> Author: cuiyf") 
 		call append(line(".")+2, "	> Mail: XXX@qq.com") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, "************************************************************************/") 
-		call append(line(".")+5, "")
+		call append(line(".")+3, "	> Github: https://github.com/yiluohan1234") 
+		call append(line(".")+4, "	> Created Time: ".strftime("%c")) 
+		call append(line(".")+5, "************************************************************************/") 
+		call append(line(".")+6, "")
 	endif
     if expand("%:e") == 'cpp'
 		call append(line(".")+6, "#include <iostream>")
@@ -480,4 +484,9 @@ Bundle 'davidhalter/jedi-vim'
 
 
 let g:SuperTabDefaultCompletionType="context"
+"--fold setting--
+set foldmethod=syntax " 用语法高亮来定义折叠
+set foldlevel=100 " 启动vim时不要自动折叠代码
+set foldcolumn=5 " 设置折叠栏宽度"
+
 
