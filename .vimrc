@@ -1,98 +1,12 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""新文件标题
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-    "如果文件类型为.sh文件 
-    if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
-		call append(line("."), "#######################################################################") 
-		call append(line(".")+1, "	#'''	")
-		call append(line(".")+2, "	#> File Name: ".expand("%")) 
-		call append(line(".")+3, "	#> Author: cuiyf") 
-		call append(line(".")+4, "	#> Mail: XXX@qq.com") 
-		call append(line(".")+5, "	#> Github: https://github.com/yiluohan1234") 
-		call append(line(".")+6, "	#> Created Time: ".strftime("%c")) 
-		call append(line(".")+7, "	#'''	")		
-		call append(line(".")+8, "#######################################################################") 
-		call append(line(".")+9, "")
-    elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python")
-        call append(line("."),"# coding=utf-8")
-		call append(line(".")+1, "#######################################################################") 
-		call append(line(".")+2, "#	> File Name: ".expand("%")) 
-		call append(line(".")+3, "#	> Author: cuiyf") 
-		call append(line(".")+4, "#	> Mail: XXX@qq.com") 
-		call append(line(".")+5, "#	> Github: https://github.com/yiluohan1234") 
-		call append(line(".")+6, "#	> Created Time: ".strftime("%c")) 
-		call append(line(".")+7, "#######################################################################") 
-		call append(line(".")+8, "")
-	
-
-    elseif &filetype == 'ruby'
-        call setline(1,"#!/usr/bin/env ruby")
-        call append(line(".")+2,"# encoding: utf-8")
-		call append(line(".")+3, "/*************************************************************************") 
-		call append(line(".")+4, "	> File Name: ".expand("%")) 
-		call append(line(".")+5, "	> Author: cuiyf") 
-		call append(line(".")+6, "	> Mail: XXX@qq.com") 
-		call append(line(".")+7, "	> Github: https://github.com/yiluohan1234") 
-		call append(line(".")+8, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+9, "************************************************************************/") 
-		call append(line(".")+10, "")
-    else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: cuiyf") 
-		call append(line(".")+2, "	> Mail: XXX@qq.com") 
-		call append(line(".")+3, "	> Github: https://github.com/yiluohan1234") 
-		call append(line(".")+4, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+5, "************************************************************************/") 
-		call append(line(".")+6, "")
-	endif
-    if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include <iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-		call append(line(".")+6, "#include <stdio.h>")
-		call append(line(".")+7, "#include <stdlib.h>")
-		call append(line(".")+8, "#include <string.h>")
-		call append(line(".")+9, "")
-    endif
-    if expand("%:e") == 'h'
-		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
-		call append(line(".")+8, "")
-		call append(line(".")+9, "")
-		call append(line(".")+10, "")
-		call append(line(".")+11, "#endif")
-    endif
-    if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%:r"))
-		call append(line(".")+7,"")
-	endif
-	"新建文件后，自动定位到文件末尾
-endfunc 
-"新建文件后，自动定位到文件末尾
-autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 显示相关  
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-" 不要图形按钮 
-set go=              
-" 设置字体  
-set guifont=Courier_New:h10:cANSI 
+" 显示相关
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 不要图形按钮
+set go=
+" 设置字体
+set guifont=Courier_New:h10:cANSI
 " 输入的命令显示出来
-set showcmd           
-" 显示中文帮助
-if version >= 603
-	set helplang=cn
-	set encoding=utf-8
-endif
+set showcmd
 " 设置配色方案
 colorscheme ron
 
@@ -103,41 +17,35 @@ colorscheme ron
 set autoread
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
-"代码补全 
-set completeopt=preview,menu 
-"共享剪贴板  
-set clipboard+=unnamedplus 
+"代码补全
+set completeopt=preview,menu
+"共享剪贴板
+set clipboard+=unnamedplus
 "在处理未保存或只读文件的时候，弹出确认
 set confirm
 "不让vim发出讨厌的滴滴声
 set noerrorbells
 "在搜索的时候忽略大小写
 "set ignorecase
-"从不备份  
-set nobackup
 "make 运行
 :set makeprg=g++\ -Wall\ \ %
 "自动保存
 set autowrite
-"set ruler                   " 打开状态栏标尺
-"set cursorline              " 突出显示当前行
+" 打开状态栏标尺
+"set ruler
+" 突出显示当前行
+set cursorline
 set magic                   " 设置魔术
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
 " 设置在状态行显示的信息
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-"set foldcolumn=0
-"set foldmethod=indent 
-"set foldlevel=3 
-"set foldenable              " 开始折叠
 " 不要使用vi的键盘模式，而是vim自己的
 set nocompatible
 " 语法高亮
 set syntax=on
 " 去掉输入错误的提示声音
 set noeb
-" 在处理未保存或只读文件的时候，弹出确认
-set confirm
 " 自动缩进
 set autoindent
 set cindent
@@ -157,8 +65,6 @@ set history=1000
 "禁止生成临时文件
 set nobackup
 set noswapfile
-"搜索忽略大小写
-set ignorecase
 "搜索逐字符高亮
 set hlsearch
 set incsearch
@@ -217,75 +123,125 @@ au BufRead,BufNewFile *  setfiletype txt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
-nmap <F9> <Esc>:!ctags -R --c-kinds=+p --fields=+iaS --extra=+q *<CR> 
-
+"nerdcommenter主要功能是方便的写注释
+map <F1> <leader>ci <CR>
 " 映射全选+复制 ctrl+a
 map <C-A> ggVGY
 map! <C-A> <Esc>ggVGY
 map <F12> gg=G
 " 选中状态下 Ctrl+c 复制
-map <C-c> y 
-"列出当前目录文件  
-map <F2> :tabnew .<CR>  
-"打开树状文件目录  
-map <C-F2> \be 
-"去空行  
-nnoremap <F4> :g/^\s*$/d<CR>  
-"C，C++ 按F5编译运行
+map <C-c> y
+"列出当前目录文件
+map <F2> :tabnew .<CR>
+"打开树状文件目录
+map <C-F2> \be
+"map <F3> :CtrlP<CR>
+"去空行
+nnoremap <F4> :g/^\s*$/d<CR>
+"C，C++,python等 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
+function RunPython()
+	let mp = &makeprg
+	let ef = &errorformat
+	let exeFile = expand("%:t")
+	setlocal makeprg=python\ -u
+	set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+	silent make %
+	copen
+	let &makeprg = mp
+	let &errorformat = ef
+	endfunction
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
 		exec "!g++ % -o %<"
-		exec "! ./%<"
+		exec "!time ./%<"
 	elseif &filetype == 'cpp'
 		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!java %<"
+		exec "!time ./%<"
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
 	elseif &filetype == 'sh'
-		exec "!chmod a+x %"  
-		exec "!./%"
+		:!time bash %
 	elseif &filetype == 'python'
-		exec "!python %"
+		exec "!time python %"
+		"call RunPython()
+	elseif &filetype == 'html'
+		exec "!firefox % &"
+	elseif &filetype == 'go'
+		exec "!go build %<"
+		exec "!time go run %"
+	elseif &filetype == 'mkd'
+		exec "!~/.vim/markdown.pl % > %.html &"
+		exec "!firefox %.html &"
 	endif
 endfunc
 map <F6> :TlistToggle<CR>
-map <F7> :NERDTreeToggle<CR> 
+map <F7> :NERDTreeToggle<CR>
 "C,C++的调试
 map <F8> :call Rungdb()<CR>
 func! Rungdb()
 	exec "w"
 	exec "!g++ % -g -o %<"
 	exec "!gdb ./%<"
+	exec "w"
 endfunc
-map <F9> :call SaveInputData()<CR>
-func! SaveInputData()
-	exec "tabnew"
-	exec 'normal "+gP'
-	exec "w! /tmp/input_data"
-endfunc
+nmap <F9> <Esc>:!ctags -R --c-kinds=+p --fields=+iaS --extra=+q *<CR>
 
+"--代码折叠--
+set foldmethod=syntax " 用语法高亮来定义折叠
+set foldlevel=99 " 启动vim时不要自动折叠代码
+set foldcolumn=5 " 设置折叠栏宽度"
+"用空格键来开关折叠
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-filetype plugin indent on 
-"打开文件类型检测, 加了这句才可以用智能补全
-set completeopt=longest,menu
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Bundle配置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+Bundle 'Auto-Pairs'
+"YouCompleteMe已经集成了syntastic
+"Bundle 'scrooloose/syntastic'
+Bundle 'https://github.com/wincent/command-t.git'
+Bundle 'https://github.com/ervandew/supertab.git'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'tell-k/vim-autopep8'
+"用于注释
+Bundle 'The-NERD-Commenter'
+"用于美化状态栏
+Bundle 'Lokaltog/vim-powerline'
+"indentLine是一款缩进指示线，由纯字符实现，效果比较完美
+Bundle 'Yggdroot/indentLine'
+"迅速定位文件
+Bundle 'kien/ctrlp.vim'
+Bundle "drmingdrmer/xptemplate.git"
+Bundle 'tmhedberg/SimpylFold'
+"python-mode是封装了pylint、rope、pydoc、pep8和mccabe的vim插件
+"Bundle 'python-mode-klen'
+"自动补全插件
+Bundle 'davidhalter/jedi-vim'
 
-"Tlist
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"插件配置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""Tlist"""""""""""""""""""""""
 let g:Tlist_Show_One_File=1
 let g:Tlist_Exit_OnlyWindow=1
 let g:Tlist_Use_Right_Window=1
 let g:EchoFuncKeyPrev="<F3>"
 let g:EchoFuncKeyNext="<F4>"
 
-"winManager setting
+"""""""""""""""""""""""winManager setting"""""""""""""""""""""""
 "map <F8> :WMToggle<cr>
 let g:winManagerWindowLayout='TagList|FileExplorer|BufExploer'
 let g:persistentBehaviour=0
 let g:winManagerWidth=30
 
-"NERDtee设定
+"""""""""""""""""""""""oNERDtee设定"""""""""""""""""""""""
 let NERDChristmasTree=1
 let NERDTreeAutoCenter=1
 let NERDTreeBookmarksFile=$VIM.'\Data\NerdBookmarks.txt'
@@ -296,6 +252,11 @@ let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
+"窗口之间切换,ctrl + w + j == ctrl + j
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 if &term == "xterm"
 	set t_Co=8
@@ -304,7 +265,8 @@ if &term == "xterm"
 endif
 let g:neocomplcache_enable_at_startup = 1
 
-"--omnicppcomplete setting --
+
+"""""""""""""""""""""""omnicppcomplete setting"""""""""""""""""""""""
 set completeopt=menu,menuone
 let OmniCpp_MayCompleteDot = 1 "autocomplete with .
 let OmniCpp_MayCompleteArrow = 1 "autocomplete with ->
@@ -319,57 +281,43 @@ let OmniCpp_DefaultNameSpaces=["std"]
 set autochdir
 set tags+=/usr/include/qt4/tags
 
-"""""""""""""""""""""""cscope设置""""""""""""""""""      
-set cscopequickfix=s-,c-,d-,i-,t-,e-    
-if has("cscope")    
-	set csprg=/usr/bin/cscope    
-	set csto=1    
-	set cst    
-	set nocsverb    
-	" add any database in current directory     
-	if filereadable("cscope.out")    
-   		cs add cscope.out    
-	endif    
-	set csverb    
-endif    
-  
-nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>  
-nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>  
-nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>  
+"""""""""""""""""""""""ocscope设置"""""""""""""""""""""""
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+if has("cscope")
+	set csprg=/usr/bin/cscope
+	set csto=1
+	set cst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+   		cs add cscope.out
+	endif
+	set csverb
+endif
 
-"""""""""""""""""""YouCompleteMe设置"""""""""""""""""" 
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+"""""""""""""""""""""""YouCompleteMe设置"""""""""""""""""""""""
 let g:ycm_global_ycm_extra_conf = '~/.vim/data/ycm/.ycm_extra_conf.py'
 
 
-"BundleList              -列举列表(也就是.vimrc)中配置的所有插件  
-"BundleInstall          -安装列表中的全部插件  
-"BundleInstall!         -更新列表中的全部插件  
-"BundleSearch foo   -查找foo插件  
-"BundleSearch! foo  -刷新foo插件缓存  
-"BundleClean           -清除列表中没有的插件  
-"BundleClean!          -清除列表中没有的插件  
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
-Bundle 'Auto-Pairs'
-"YouCompleteMe已经集成了syntastic
-"Bundle 'scrooloose/syntastic'
-Bundle 'https://github.com/wincent/command-t.git'
-Bundle 'https://github.com/ervandew/supertab.git'
-Bundle 'Valloric/YouCompleteMe'
-
-"迅速定位文件
-"map <F3> :CtrlP<CR>
-Bundle 'kien/ctrlp.vim'
-"ctrlp设置
+"BundleList              -列举列表(也就是.vimrc)中配置的所有插件
+"BundleInstall          -安装列表中的全部插件
+"BundleInstall!         -更新列表中的全部插件
+"BundleSearch foo   -查找foo插件
+"BundleSearch! foo  -刷新foo插件缓存
+"BundleClean           -清除列表中没有的插件
+"BundleClean!          -清除列表中没有的插件
+"""""""""""""""""""""""indentLine设置"""""""""""""""""""""""
+let g:indentLine_char = '¦'
+"""""""""""""""""""""""ctrlp设置"""""""""""""""""""""""
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif     "MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif  "Windows
 let g:ctrlp_map = '<c-p>'
@@ -380,24 +328,11 @@ let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-
-"用于美化状态栏
-Bundle 'Lokaltog/vim-powerline'
-
-"nerdcommenter主要功能是方便的写注释
-map <F1> <leader>ci <CR>
-Bundle 'The-NERD-Commenter'
-
-"indentLine是一款缩进指示线，由纯字符实现，效果比较完美
-Bundle 'Yggdroot/indentLine'
-let g:indentLine_char = '¦'
-
-Bundle "drmingdrmer/xptemplate.git"
+"""""""""""""""""""""""xptemplate设置"""""""""""""""""""""""
 let g:xptemplate_key = '<C-\>'
-
-"python-mode是封装了pylint、rope、pydoc、pep8和mccabe的vim插件
-"Bundle 'python-mode-klen'
-"python-mode
+"""""""""""""""""""""""SimpylFold设置"""""""""""""""""""""""
+let g:SimpylFold_docstring_preview=1
+"""""""""""""""""""""""python-mode设置"""""""""""""""""""""""
 "开启警告
 "let g:pymode_warnings = 0
 "保存文件时自动删除无用空格
@@ -477,16 +412,88 @@ let g:xptemplate_key = '<C-\>'
 "aC	Select a class. Ex: vaC, daC, yaC, caC (normal, operator modes)
 "iC	Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
 "aM	Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
-"iM	Select inner function or method. Ex: viM, diM, yiM, ciM 
-
-"自动补全插件
-Bundle 'davidhalter/jedi-vim'
-
+"iM	Select inner function or method. Ex: viM, diM, yiM, ciM
 
 let g:SuperTabDefaultCompletionType="context"
-"--fold setting--
-set foldmethod=syntax " 用语法高亮来定义折叠
-set foldlevel=100 " 启动vim时不要自动折叠代码
-set foldcolumn=5 " 设置折叠栏宽度"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""新文件标题
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
+"定义函数SetTitle，自动插入文件头
+func SetTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+		call setline(1,"\#!/bin/bash")
+		call append(line("."), "#######################################################################")
+		call append(line(".")+1, "	#'''	")
+		call append(line(".")+2, "	#> File Name: ".expand("%"))
+		call append(line(".")+3, "	#> Author: cuiyf")
+		call append(line(".")+4, "	#> Mail: XXX@qq.com")
+		call append(line(".")+5, "	#> Github: https://github.com/yiluohan1234")
+		call append(line(".")+6, "	#> Created Time: ".strftime("%c"))
+		call append(line(".")+7, "	#'''	")
+		call append(line(".")+8, "#######################################################################")
+		call append(line(".")+9, "")
+    elseif &filetype == 'python'
+		call setline(1,"#!/usr/bin/env python")
+		call append(line("."),"# coding=utf-8")
+		call append(line(".")+1, "#######################################################################")
+		call append(line(".")+2, "#	> File Name: ".expand("%"))
+		call append(line(".")+3, "#	> Author: cuiyf")
+		call append(line(".")+4, "#	> Mail: XXX@qq.com")
+		call append(line(".")+5, "#	> Github: https://github.com/yiluohan1234")
+		call append(line(".")+6, "#	> Created Time: ".strftime("%c"))
+		call append(line(".")+7, "#######################################################################")
+		call append(line(".")+8, "")
 
 
+    elseif &filetype == 'ruby'
+		call setline(1,"#!/usr/bin/env ruby")
+		call append(line(".")+2,"# encoding: utf-8")
+		call append(line(".")+3, "/*************************************************************************")
+		call append(line(".")+4, "	> File Name: ".expand("%"))
+		call append(line(".")+5, "	> Author: cuiyf")
+		call append(line(".")+6, "	> Mail: XXX@qq.com")
+		call append(line(".")+7, "	> Github: https://github.com/yiluohan1234")
+		call append(line(".")+8, "	> Created Time: ".strftime("%c"))
+		call append(line(".")+9, "************************************************************************/")
+		call append(line(".")+10, "")
+    else
+		call setline(1, "/*************************************************************************")
+		call append(line("."), "	> File Name: ".expand("%"))
+		call append(line(".")+1, "	> Author: cuiyf")
+		call append(line(".")+2, "	> Mail: XXX@qq.com")
+		call append(line(".")+3, "	> Github: https://github.com/yiluohan1234")
+		call append(line(".")+4, "	> Created Time: ".strftime("%c"))
+		call append(line(".")+5, "************************************************************************/")
+		call append(line(".")+6, "")
+	endif
+    if expand("%:e") == 'cpp'
+		call append(line(".")+6, "#include <iostream>")
+		call append(line(".")+7, "using namespace std;")
+		call append(line(".")+8, "")
+    endif
+    if &filetype == 'c'
+		call append(line(".")+6, "#include <stdio.h>")
+		call append(line(".")+7, "#include <stdlib.h>")
+		call append(line(".")+8, "#include <string.h>")
+		call append(line(".")+9, "")
+    endif
+    if expand("%:e") == 'h'
+		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
+		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
+		call append(line(".")+8, "")
+		call append(line(".")+9, "")
+		call append(line(".")+10, "")
+		call append(line(".")+11, "#endif")
+    endif
+    if &filetype == 'java'
+		call append(line(".")+6,"public class ".expand("%:r"))
+		call append(line(".")+7,"")
+	endif
+	"新建文件后，自动定位到文件末尾
+endfunc
+"新建文件后，自动定位到文件末尾
+autocmd BufNewFile * normal G
