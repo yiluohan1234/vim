@@ -1,3 +1,84 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""新文件标题
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
+"定义函数SetTitle，自动插入文件头
+func SetTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+		call setline(1,"\#!/bin/bash")
+		call append(line("."), "#######################################################################")
+		call append(line(".")+1, "	#'''	")
+		call append(line(".")+2, "	#> File Name: ".expand("%"))
+		call append(line(".")+3, "	#> Author: cuiyf")
+		call append(line(".")+4, "	#> Mail: XXX@qq.com")
+		call append(line(".")+5, "	#> Github: https://github.com/yiluohan1234")
+		call append(line(".")+6, "	#> Created Time: ".strftime("%c"))
+		call append(line(".")+7, "	#'''	")
+		call append(line(".")+8, "#######################################################################")
+		call append(line(".")+9, "")
+    elseif &filetype == 'python'
+		call setline(1,"#!/usr/bin/env python")
+		call append(line("."),"# coding=utf-8")
+		call append(line(".")+1, "#######################################################################")
+		call append(line(".")+2, "#	> File Name: ".expand("%"))
+		call append(line(".")+3, "#	> Author: cuiyf")
+		call append(line(".")+4, "#	> Mail: XXX@qq.com")
+		call append(line(".")+5, "#	> Github: https://github.com/yiluohan1234")
+		call append(line(".")+6, "#	> Created Time: ".strftime("%c"))
+		call append(line(".")+7, "#######################################################################")
+		call append(line(".")+8, "")
+
+
+    elseif &filetype == 'ruby'
+		call setline(1,"#!/usr/bin/env ruby")
+		call append(line(".")+2,"# encoding: utf-8")
+		call append(line(".")+3, "/*************************************************************************")
+		call append(line(".")+4, "	> File Name: ".expand("%"))
+		call append(line(".")+5, "	> Author: cuiyf")
+		call append(line(".")+6, "	> Mail: XXX@qq.com")
+		call append(line(".")+7, "	> Github: https://github.com/yiluohan1234")
+		call append(line(".")+8, "	> Created Time: ".strftime("%c"))
+		call append(line(".")+9, "************************************************************************/")
+		call append(line(".")+10, "")
+    else
+		call setline(1, "/*************************************************************************")
+		call append(line("."), "	> File Name: ".expand("%"))
+		call append(line(".")+1, "	> Author: cuiyf")
+		call append(line(".")+2, "	> Mail: XXX@qq.com")
+		call append(line(".")+3, "	> Github: https://github.com/yiluohan1234")
+		call append(line(".")+4, "	> Created Time: ".strftime("%c"))
+		call append(line(".")+5, "************************************************************************/")
+		call append(line(".")+6, "")
+	endif
+    if expand("%:e") == 'cpp'
+		call append(line(".")+6, "#include <iostream>")
+		call append(line(".")+7, "using namespace std;")
+		call append(line(".")+8, "")
+    endif
+    if &filetype == 'c'
+		call append(line(".")+6, "#include <stdio.h>")
+		call append(line(".")+7, "#include <stdlib.h>")
+		call append(line(".")+8, "#include <string.h>")
+		call append(line(".")+9, "")
+    endif
+    if expand("%:e") == 'h'
+		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
+		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
+		call append(line(".")+8, "")
+		call append(line(".")+9, "")
+		call append(line(".")+10, "")
+		call append(line(".")+11, "#endif")
+    endif
+    if &filetype == 'java'
+		call append(line(".")+6,"public class ".expand("%:r"))
+		call append(line(".")+7,"")
+	endif
+	"新建文件后，自动定位到文件末尾
+endfunc
+"新建文件后，自动定位到文件末尾
+autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 显示相关
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -34,7 +115,7 @@ set autowrite
 " 打开状态栏标尺
 "set ruler
 " 突出显示当前行
-set cursorline
+"set cursorline
 set magic                   " 设置魔术
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
@@ -187,7 +268,13 @@ func! Rungdb()
 	exec "!gdb ./%<"
 	exec "w"
 endfunc
+" map <F9> :call SaveInputData()<CR>
 nmap <F9> <Esc>:!ctags -R --c-kinds=+p --fields=+iaS --extra=+q *<CR>
+func! SaveInputData()
+	exec "tabnew"
+	exec 'normal "+gP'
+	exec "w! /tmp/input_data"
+endfunc
 
 "--代码折叠--
 set foldmethod=syntax " 用语法高亮来定义折叠
@@ -207,7 +294,9 @@ Bundle 'Auto-Pairs'
 "YouCompleteMe已经集成了syntastic
 "Bundle 'scrooloose/syntastic'
 Bundle 'https://github.com/wincent/command-t.git'
+"使Tab快捷键具有更快捷的上下文提示功能
 Bundle 'https://github.com/ervandew/supertab.git'
+"自动补全插件
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tell-k/vim-autopep8'
 "用于注释
@@ -218,16 +307,27 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'Yggdroot/indentLine'
 "迅速定位文件
 Bundle 'kien/ctrlp.vim'
+"自动生成代码的格式,快捷键:ctrl + \ 
 Bundle "drmingdrmer/xptemplate.git"
 Bundle 'tmhedberg/SimpylFold'
 "python-mode是封装了pylint、rope、pydoc、pep8和mccabe的vim插件
 "Bundle 'python-mode-klen'
-"自动补全插件
+"自动补全插件与python-mode冲突
 Bundle 'davidhalter/jedi-vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "插件配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""jedi-vim""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "context"
+let g:jedi#popup_on_dot = 0
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 """""""""""""""""""""""Tlist"""""""""""""""""""""""
 let g:Tlist_Show_One_File=1
 let g:Tlist_Exit_OnlyWindow=1
@@ -250,6 +350,8 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 "窗口之间切换,ctrl + w + j == ctrl + j
@@ -258,6 +360,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"自动补全函数提示
+"""""""""""""""""""""""neocomplcache setting""""""""""""""""""""""""""
 if &term == "xterm"
 	set t_Co=8
 	set t_Sb=^[[4%dm
@@ -331,6 +435,7 @@ let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 """""""""""""""""""""""xptemplate设置"""""""""""""""""""""""
 let g:xptemplate_key = '<C-\>'
 """""""""""""""""""""""SimpylFold设置"""""""""""""""""""""""
+"显示折叠代码的文档字符串
 let g:SimpylFold_docstring_preview=1
 """""""""""""""""""""""python-mode设置"""""""""""""""""""""""
 "开启警告
@@ -414,86 +519,4 @@ let g:SimpylFold_docstring_preview=1
 "aM	Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
 "iM	Select inner function or method. Ex: viM, diM, yiM, ciM
 
-let g:SuperTabDefaultCompletionType="context"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""新文件标题
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
-"定义函数SetTitle，自动插入文件头
-func SetTitle()
-    "如果文件类型为.sh文件
-    if &filetype == 'sh'
-		call setline(1,"\#!/bin/bash")
-		call append(line("."), "#######################################################################")
-		call append(line(".")+1, "	#'''	")
-		call append(line(".")+2, "	#> File Name: ".expand("%"))
-		call append(line(".")+3, "	#> Author: cuiyf")
-		call append(line(".")+4, "	#> Mail: XXX@qq.com")
-		call append(line(".")+5, "	#> Github: https://github.com/yiluohan1234")
-		call append(line(".")+6, "	#> Created Time: ".strftime("%c"))
-		call append(line(".")+7, "	#'''	")
-		call append(line(".")+8, "#######################################################################")
-		call append(line(".")+9, "")
-    elseif &filetype == 'python'
-		call setline(1,"#!/usr/bin/env python")
-		call append(line("."),"# coding=utf-8")
-		call append(line(".")+1, "#######################################################################")
-		call append(line(".")+2, "#	> File Name: ".expand("%"))
-		call append(line(".")+3, "#	> Author: cuiyf")
-		call append(line(".")+4, "#	> Mail: XXX@qq.com")
-		call append(line(".")+5, "#	> Github: https://github.com/yiluohan1234")
-		call append(line(".")+6, "#	> Created Time: ".strftime("%c"))
-		call append(line(".")+7, "#######################################################################")
-		call append(line(".")+8, "")
-
-
-    elseif &filetype == 'ruby'
-		call setline(1,"#!/usr/bin/env ruby")
-		call append(line(".")+2,"# encoding: utf-8")
-		call append(line(".")+3, "/*************************************************************************")
-		call append(line(".")+4, "	> File Name: ".expand("%"))
-		call append(line(".")+5, "	> Author: cuiyf")
-		call append(line(".")+6, "	> Mail: XXX@qq.com")
-		call append(line(".")+7, "	> Github: https://github.com/yiluohan1234")
-		call append(line(".")+8, "	> Created Time: ".strftime("%c"))
-		call append(line(".")+9, "************************************************************************/")
-		call append(line(".")+10, "")
-    else
-		call setline(1, "/*************************************************************************")
-		call append(line("."), "	> File Name: ".expand("%"))
-		call append(line(".")+1, "	> Author: cuiyf")
-		call append(line(".")+2, "	> Mail: XXX@qq.com")
-		call append(line(".")+3, "	> Github: https://github.com/yiluohan1234")
-		call append(line(".")+4, "	> Created Time: ".strftime("%c"))
-		call append(line(".")+5, "************************************************************************/")
-		call append(line(".")+6, "")
-	endif
-    if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include <iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-		call append(line(".")+6, "#include <stdio.h>")
-		call append(line(".")+7, "#include <stdlib.h>")
-		call append(line(".")+8, "#include <string.h>")
-		call append(line(".")+9, "")
-    endif
-    if expand("%:e") == 'h'
-		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
-		call append(line(".")+8, "")
-		call append(line(".")+9, "")
-		call append(line(".")+10, "")
-		call append(line(".")+11, "#endif")
-    endif
-    if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%:r"))
-		call append(line(".")+7,"")
-	endif
-	"新建文件后，自动定位到文件末尾
-endfunc
-"新建文件后，自动定位到文件末尾
-autocmd BufNewFile * normal G
